@@ -1,0 +1,50 @@
+# Publish the demo website in site/ on GitHub Pages whenever it changes on main. The demo runs on a made-up
+# listener (scripts/build_demo_site.py writes its data), so nothing of yours is in it. Before it goes up,
+# tests/test_site.py checks that the page still can't load from elsewhere, send or store anything.
+#
+# Once per repository: Settings > Pages > Build and deployment > Source: GitHub Actions.
+name: Demo site
+
+on:
+  push:
+    branches: [main]
+    paths: ["site/**", "tests/test_site.py", ".github/workflows/pages.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deployment at a time; a newer push waits rather than cancelling one halfway.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: The page sends and stores nothing
+        run: |
+          pip install pytest==9.1.1
+          python -m pytest tests/test_site.py
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Publish
+        id: deployment
+        uses: actions/deploy-pages@v4

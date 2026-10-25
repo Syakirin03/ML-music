@@ -4,6 +4,8 @@
 
 ![Python 3.13](https://img.shields.io/badge/python-3.13-3776ab) ![DuckDB](https://img.shields.io/badge/database-DuckDB-fff000) ![scikit-learn](https://img.shields.io/badge/ML-scikit--learn-f7931e) ![Streamlit](https://img.shields.io/badge/website-Streamlit-ff4b4b) ![License: MIT](https://img.shields.io/badge/license-MIT-green)
 
+**[Try the demo](https://syakirin03.github.io/ML-music/)**: the website on a made-up listener, in your browser. Nothing you click there is sent anywhere.
+
 Spotify lets you download everything it knows about your listening: every play for as long as you've had an account, when it started, how long you listened and how it ended. This project turns that download into a recommender for one person, you. It finds songs new to you, songs you loved and stopped playing, and songs like one you name. Then it learns from your likes and dislikes. The tutorial in [`docs/`](docs/) walks through building it step by step with your own data, and explains each idea along the way: cleaning messy exports, a medallion database, features without leakage, logistic regression, embeddings from co-occurrence, and evaluation that can't peek at the future.
 
 ## What you get
@@ -40,8 +42,8 @@ flowchart LR
 You need **Python 3.13**, your Spotify **Extended streaming history** (request it now: Spotify can take up to 30 days to send it), and a free **Last.fm API key**. [Chapter 1](docs/1-get-your-data.md) and [chapter 2](docs/2-set-up.md) explain each.
 
 ```bash
-git clone https://github.com/Syakirin03/music-preference.git
-cd music-preference
+git clone https://github.com/Syakirin03/ML-music.git
+cd ML-music
 python -m venv .venv
 source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
@@ -89,7 +91,8 @@ The last row is why the website asks for ratings: your history tells well *what 
 ├── app.py                    the website's entry point: streamlit run app.py
 ├── app_pages/                its five pages, the shared state (common.py) and the look (look.py)
 ├── recommender/              the recommender package: data, profile, scores, models, evaluation, Spotify
-├── scripts/                  the data pipeline: export -> database -> genres -> gold -> pool of new songs
+├── scripts/                  the data pipeline: export -> database -> genres -> gold -> pool of new songs; the demo's data
+├── site/                     the demo website on GitHub Pages: a made-up listener, ranked in your browser
 ├── notebooks/                exploratory analysis of your listening (saved without outputs)
 ├── tests/                    pytest suite on made-up data, plus the privacy checks
 ├── docs/                     the tutorial and the reference
@@ -99,7 +102,7 @@ The last row is why the website asks for ratings: your history tells well *what 
 ├── static/                   the website's font and logo
 ├── .streamlit/config.toml    the website's theme; it only listens on your computer
 ├── .githooks/pre-commit      the privacy checks, before every commit
-├── .github/workflows/ci.yml  lint and tests on every push
+├── .github/workflows/        lint and tests on every push (ci.yml); the demo published on GitHub Pages (pages.yml)
 ├── config.example.toml       your settings: copy it to config.toml
 ├── pyproject.toml            project metadata and tool settings
 ├── requirements.txt          the exact versions it runs with

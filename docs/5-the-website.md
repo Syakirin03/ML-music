@@ -57,4 +57,14 @@ For readers who want to build something like it:
 - **The player.** Each card holds a tiny page that loads Spotify's iFrame API and tells the other cards to pause over a `BroadcastChannel`.
 - **Tests.** `streamlit.testing.v1.AppTest` runs the pages without a browser. Run it on a copy of your data: set `MUSIC_RECOMMENDER_USER_DIR` to a scratch folder holding a copy of `data/user/`, so no test rating is ever saved among yours.
 
+## The demo on GitHub Pages
+
+The real website can't go online: it shows your listening and saves your ratings. So the project has a second one, [a demo](https://syakirin03.github.io/ML-music/), in `site/`: the same pages, on a listener who doesn't exist.
+
+- **The listener is made up.** `python scripts/build_demo_site.py` invents one: 14 artists with names like Synth Coast and Velvet Tram, about five years of daily listening whose favourites come and go, a Last.fm pool of a few thousand songs, and ratings of 14 lists by a rule of its own (it likes some genres more than others). Then it runs what you ran in chapters 3 and 4 on that listener, in a scratch folder: `build_database.py`, `build_gold.py`, the rediscover model, the website's lists and ratings, the model learned from them. What the pages show goes to `site/data/demo.js`. Rerun it after changing the recommender, so that the demo shows what the code does now.
+- **Your browser ranks the songs.** GitHub Pages serves files, not Python, so `site/assets/engine.js` repeats the ranking of `scoring.py` and `recommend.py` (the score with your dials, the model learned from ratings, the cap per artist, variety) on the parts the script keeps for every song. With [Node.js](https://nodejs.org) installed, the script then checks that the page lists the same songs, in the same order and with the same reasons, as the Python code (`scripts/check_demo_engine.js`).
+- **Visitors' clicks stay in their tab.** Like, Neutral and Dislike work as on the website, but the choices change no list, profile or model, and they're gone when the tab closes. The page's Content Security Policy forbids it to connect anywhere, send a form, or load anything from another site, and `tests/test_site.py` checks that the policy stays and that no script sends or stores anything.
+- **Preview it** with `python -m http.server 8765 --bind 127.0.0.1 --directory site`, then open http://127.0.0.1:8765.
+- **Publish your own copy** by turning on GitHub Pages once (the repository's Settings → Pages → Source: *GitHub Actions*). `.github/workflows/pages.yml` then runs the site's tests and publishes `site/` whenever it changes on `main`. Only ever publish the made-up listener: never put your own data in `site/`.
+
 Next: [6. Make it yours](6-make-it-yours.md).

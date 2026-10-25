@@ -7,8 +7,8 @@ This chapter installs the project, gets the keys it needs, and writes your perso
 You need [Python 3.13](https://www.python.org/downloads/). Then:
 
 ```bash
-git clone https://github.com/Syakirin03/music-preference.git
-cd music-preference
+git clone https://github.com/Syakirin03/ML-music.git
+cd ML-music
 ```
 
 Work in a virtual environment, so the exact versions this project needs don't clash with anything else on your computer:

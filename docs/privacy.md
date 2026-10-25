@@ -32,6 +32,7 @@ Your listening times deserve a special mention. The *Your data* page and the not
    Turn it on in each clone with `git config core.hooksPath .githooks`. When the last check stops a commit over an ordinary word that happens to be one of your artists' names, add the word to `[privacy] allow` in `config.toml`.
 4. **The tests use made-up data.** `tests/conftest.py` points the recommender at the default settings and an empty scratch folder before anything runs, so no test reads your settings or writes among your ratings. The pipeline tests build their databases from invented exports.
 5. **GitHub Actions** runs the linter, `nbstripout --verify` and the tests on every push. On GitHub's servers your files don't exist, so the checks that compare with them skip themselves. The others still catch a tracked personal file or a notebook with outputs.
+6. **The demo website holds nothing of yours.** `site/` is public on GitHub Pages, so its data is made up: `scripts/build_demo_site.py` invents a listener and runs the real code on them in a scratch folder, with the default settings and in UTC. It never reads `data/`, `config.toml` or `secrets/`, and it refuses to write a time with another time zone's offset, which would give yours away. The privacy check above scans `site/` like every other file, and `tests/test_site.py` checks that the page can't send or store anything ([chapter 5](5-the-website.md#the-demo-on-github-pages)).
 
 ## What leaves your computer
 
