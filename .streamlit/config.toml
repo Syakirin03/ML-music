@@ -1,0 +1,52 @@
+# Settings for streamlit run app.py; Streamlit reads them from the folder it is started in.
+
+[server]
+# Only this computer can open the app: it shows your listening and saves your ratings.
+address = "localhost"
+port = 8501
+# No email prompt on the first run, and no browser tab opened by itself: open http://127.0.0.1:8501.
+headless = true
+# Serves the static folder (the Inter font) at /app/static, so no font is fetched from the internet.
+enableStaticServing = true
+
+[browser]
+# Don't send Streamlit's usage statistics anywhere.
+gatherUsageStats = false
+
+[client]
+# A website's menu, without Streamlit's Deploy button and developer options.
+toolbarMode = "minimal"
+
+# The look: Inter, close to the Chirp font of X (formerly Twitter), which isn't free to use, and X's colours.
+# The website follows your system's light or dark mode; Streamlit's settings menu (top right) switches it.
+[theme]
+font = "Inter, sans-serif"
+headingFont = "Inter, sans-serif"
+baseRadius = "large"
+buttonRadius = "full"
+showSidebarBorder = true
+
+[[theme.fontFaces]]
+family = "Inter"
+url = "app/static/fonts/InterVariable.woff2"
+weight = "100 900"
+style = "normal"
+
+[theme.light]
+primaryColor = "#1d9bf0"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f7f9f9"
+textColor = "#0f1419"
+borderColor = "#e1e8ed"
+# Charts: the categorical palette and the blue magnitude ramp of the notebook (the data-visualisation guidelines).
+chartCategoricalColors = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#6250d6", "#e34948"]
+chartSequentialColors = ["#cde2fb", "#b7d3f6", "#9ec5f4", "#86b6ef", "#6da7ec", "#5598e7", "#3987e5", "#2a78d6", "#1c5cab", "#104281"]
+
+[theme.dark]
+primaryColor = "#1d9bf0"
+backgroundColor = "#000000"
+secondaryBackgroundColor = "#16181c"
+textColor = "#e7e9ea"
+borderColor = "#2f3336"
+chartCategoricalColors = ["#3987e5", "#d95926", "#199e70", "#c98500", "#d55181", "#008300", "#9085e9", "#e66767"]
+chartSequentialColors = ["#0d366b", "#104281", "#184f95", "#1c5cab", "#256abf", "#2a78d6", "#3987e5", "#5598e7", "#6da7ec", "#9ec5f4"]

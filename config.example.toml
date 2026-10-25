@@ -1,0 +1,63 @@
+# Your personal settings for Music Preference.
+#
+# Copy this file to config.toml, in the same folder, and change what you like. config.toml is ignored by
+# git, so your settings stay on your computer; only this example is shared. A setting you leave out of
+# config.toml keeps the value shown here.
+#
+# The step that reads each setting is in brackets: rerun it after a change (docs/6-make-it-yours.md).
+
+[home]
+# Your time zone, as an IANA name such as "Europe/London", "America/New_York" or "Asia/Tokyo"
+# (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). Every play's local time (hour of the day,
+# day of the week, date) uses it, because the export's own country comes from IP addresses and is often
+# wrong. Empty: your computer's time zone. [build_database.py, then build_gold.py]
+timezone = ""
+
+# Your Spotify country, two letters (ISO 3166-1) such as "GB" or "US". The website looks for songs new to
+# you in that country's Spotify catalogue. Empty: no country. [the website]
+market = ""
+
+[genres]
+# A Last.fm tag counts as a genre when it is on MusicBrainz's genre list (data/external/musicbrainz_genres.txt)
+# or on the lists in scripts/fetch_genres.py. Add genres your music has that neither knows, in lower case,
+# such as ["white noise"]. [fetch_genres.py, then build_gold.py and fetch_candidates.py]
+extra = []
+
+# Other names for a genre: { "tag" = "the genre it means" }, such as { "dnb" = "drum and bass" }.
+# [fetch_genres.py, then build_gold.py and fetch_candidates.py]
+aliases = {}
+
+[not_music]
+# Spotify publishes some audio as music tracks that you may not count as music: white noise, rain or sleep
+# sounds, audiobooks, sermons, recitations. Tracks marked here stay in your history, but they are left out of
+# your taste profile, the charts and the lists. [build_gold.py, then fetch_candidates.py]
+
+# Genres that mark a track as not music, such as ["nature sounds", "asmr"].
+genres = []
+
+# For tracks without genres: a regular expression matched against the artist, title and album in lower case,
+# such as '\b(white noise|rain sounds|sleep sounds)\b'. Write it in single quotes. Empty: none.
+pattern = ""
+
+[pool]
+# Artists whose scene you want more of. Songs new to you then also come from the artists Last.fm finds
+# similar to them, and from the artists similar to those. Spell them as Last.fm does. [fetch_candidates.py]
+favourite_artists = []
+
+[taste]
+# Genres you want more of among songs new to you, as Last.fm writes them, such as ["k-pop", "city pop"].
+# The website's "More of these genres" starts with these, and you can pick any others there. [the website]
+more_genres = []
+
+# How much more of them, from 0 to 1 (the website's "How much more"). 0.25 is a little.
+genre_boost = 0.25
+
+# How much to push down songs by Western artists among songs new to you, from 0 to 1 (the website's
+# "Less Western"). 0: not at all.
+less_western = 0.0
+
+[privacy]
+# The privacy check that runs before each commit (tests/test_privacy.py, docs/privacy.md) stops a commit that
+# names an artist of your history. List names that are also ordinary words in the code, such as an artist
+# called "Search", so that the check lets them pass. [git commit]
+allow = []

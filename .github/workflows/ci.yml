@@ -1,0 +1,36 @@
+# Lint and test every push and pull request. The tests run on made-up data, so no Spotify export, key or
+# account is needed here; the privacy checks that compare with your own files skip themselves.
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-dev.txt
+
+      - name: Install
+        run: pip install -r requirements.txt -r requirements-dev.txt
+
+      - name: Lint
+        run: ruff check .
+
+      - name: Notebooks are saved without outputs
+        run: nbstripout --verify notebooks/*.ipynb
+
+      - name: Test
+        run: pytest

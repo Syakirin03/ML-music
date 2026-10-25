@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "music-preference"
+version = "1.0.0"
+description = "A personal music recommender built from your own Spotify data export: a DuckDB medallion pipeline, models learned from your history and ratings, and a local Streamlit website."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Syakirin03" }]
+requires-python = ">=3.13"
+keywords = ["spotify", "recommender-system", "duckdb", "streamlit", "machine-learning", "lastfm", "medallion-architecture"]
+classifiers = [
+    "Programming Language :: Python :: 3.13",
+    "Operating System :: OS Independent",
+    "Topic :: Multimedia :: Sound/Audio",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+# The exact versions it was built and tested with, from requirements.txt.
+dynamic = ["dependencies", "optional-dependencies"]
+
+[tool.setuptools]
+packages = ["recommender", "app_pages"]
+
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }
+optional-dependencies.dev = { file = ["requirements-dev.txt"] }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# The project folder for the packages, and scripts/ for the pipeline scripts, which import each other by file name.
+pythonpath = [".", "scripts"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 120
+target-version = "py313"
+
+[tool.ruff.lint]
+# Mistakes rather than style: syntax errors and pyflakes (unused imports, undefined names), invalid escape
+# sequences, and pylint's errors, such as a stray control character in a string. E402 is left out because the
+# command-line modules put the project folder on sys.path before they import the package, so that they also
+# run as files (VS Code's Run button).
+select = ["E4", "E7", "E9", "F", "W605", "PLE"]
+ignore = ["E402"]

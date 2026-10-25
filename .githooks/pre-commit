@@ -1,0 +1,6 @@
+#!/bin/sh
+# Stops a commit that would publish something personal: your data, keys, settings, notebook outputs, or the
+# names of artists you play (tests/test_privacy.py). Turn it on once per clone with
+#     git config core.hooksPath .githooks
+# and see docs/privacy.md.
+exec python -m pytest --quiet --no-header -p no:cacheprovider tests/test_privacy.py

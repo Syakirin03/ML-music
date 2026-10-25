@@ -1,0 +1,53 @@
+# ---- Your data, keys and settings: never committed (docs/privacy.md) ----
+
+# Spotify's exports, everything built from them, the Last.fm and Spotify answer caches, and the
+# recommender's own files, which hold your ratings. Each folder keeps only its .gitkeep.
+/data/raw/*
+/data/interim/*
+/data/processed/*
+/data/user/*
+!/data/*/.gitkeep
+# Made from Spotify's ReadMe in your technical log export (scripts/extract_techlog_docs.py).
+/data/external/techlog_docs.json
+
+# API keys and your Spotify login.
+/secrets/*
+!/secrets/README.md
+
+# Your settings: copy config.example.toml to config.toml.
+/config.toml
+
+# Your own results and notes.
+/reports/*
+!/reports/README.md
+
+# Personal instructions for Claude Code.
+/CLAUDE.md
+/CLAUDE.local.md
+/.claude/settings.local.json
+
+# Databases, environment files and Streamlit secrets, wherever they are.
+*.duckdb
+*.duckdb.wal
+.env
+.env.*
+.streamlit/secrets.toml
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# ---- Editors and operating systems ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

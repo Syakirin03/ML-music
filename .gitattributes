@@ -1,0 +1,10 @@
+# Text files are stored with LF line endings, whatever the operating system. The hook is checked out with LF
+# everywhere too, since a shell script with Windows line endings doesn't run.
+* text=auto
+.githooks/* text eol=lf
+*.woff2 binary
+
+# Notebooks are committed without their outputs, which show your listening: nbstripout strips them as they are
+# added (pip install -r requirements-dev.txt, then nbstripout --install). Your own copy keeps its outputs.
+*.ipynb filter=nbstripout
+*.ipynb diff=ipynb

@@ -1,0 +1,5 @@
+# For working on the code, on top of requirements.txt: the tests (pytest), the linter (ruff), and nbstripout,
+# which strips notebook outputs as they are committed (docs/privacy.md).
+pytest==9.1.1
+ruff==0.17.2
+nbstripout==0.9.1
