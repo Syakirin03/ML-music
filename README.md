@@ -2,7 +2,7 @@
 
 **Build a music recommender from your own Spotify history: a data pipeline, models that learn your taste, and a small website, all running on your computer.**
 
-![Python 3.13](https://img.shields.io/badge/python-3.13-3776ab) ![DuckDB](https://img.shields.io/badge/database-DuckDB-fff000) ![scikit-learn](https://img.shields.io/badge/ML-scikit--learn-f7931e) ![Streamlit](https://img.shields.io/badge/website-Streamlit-ff4b4b) ![License: MIT](https://img.shields.io/badge/license-MIT-green)
+[![CI](https://github.com/Syakirin03/ML-music/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Syakirin03/ML-music/actions/workflows/ci.yml) ![Python 3.13](https://img.shields.io/badge/python-3.13-3776ab) ![DuckDB](https://img.shields.io/badge/database-DuckDB-fff000) ![scikit-learn](https://img.shields.io/badge/ML-scikit--learn-f7931e) ![Streamlit](https://img.shields.io/badge/website-Streamlit-ff4b4b) ![License: MIT](https://img.shields.io/badge/license-MIT-green)
 
 **[Try the demo](https://syakirin03.github.io/ML-music/)**: the website on a made-up listener, in your browser. Nothing you click there is sent anywhere.
 
